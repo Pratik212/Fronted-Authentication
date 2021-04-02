@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
+import history from '../../@history/@history'
+import {submitLogin} from "../../auth/store/loginSlice";
+import {useDispatch} from "react-redux";
 
 const Form = () => {
     const intialValues = { email: "", password: "" };
-
+    const dispatch = useDispatch();
     const [formValues, setFormValues] = useState(intialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const submit = () => {
+        dispatch(submitLogin(formValues)).then(res=>{
+            console.log(res)
+            if(res){
+                history.push({
+                    pathname:'/'
+                })
+            }
+        })
         console.log(formValues);
     };
 
@@ -88,6 +100,7 @@ const Form = () => {
                 </div>
 
                 <button type="submit">Sign In</button>
+                <Link to="/register" >Sign up</Link>
             </form>
         </div>
     );

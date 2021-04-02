@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
+import history from "../../@history/@history";
+import {submitLogin} from "../../auth/store/loginSlice";
+import {submitRegister} from "../../auth/store/registerSlice";
+import {useDispatch} from "react-redux";
 
 const Registration = () => {
-    const intialValues = { firstName: "", lastName: "" , email:"" , address:""};
-
-    const [formValues, setFormValues] = useState(intialValues);
+    const initialValues = { firstName: "", lastName: "" , email:"" , address:""};
+    const dispatch = useDispatch();
+    const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const submit = () => {
+        debugger
+        dispatch(submitRegister(formValues))
         console.log(formValues);
     };
 
@@ -22,7 +29,7 @@ const Registration = () => {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmitting(true);
-        console.log(":::intialValues:::",intialValues)
+        console.log(":::intialValues:::",initialValues)
     };
 
     //form validation handler
@@ -148,6 +155,8 @@ const Registration = () => {
                 </div>
 
                 <button className="bg-dark" type="submit">Sign Up</button>
+
+                <Link to="/login">Sign in</Link>
             </form>
         </div>
     );
