@@ -4,6 +4,7 @@ import history from "../../@history/@history";
 import {submitLogin} from "../../auth/store/loginSlice";
 import {submitRegister} from "../../auth/store/registerSlice";
 import {useDispatch} from "react-redux";
+import Navigation from "../navigation/Navigation";
 
 const Registration = () => {
     const initialValues = { firstName: "", lastName: "" , email:"" , address:""};
@@ -65,6 +66,8 @@ const Registration = () => {
     }, [formErrors]);
 
     return (
+        <>
+            <Navigation/>
         <div className="container shadow-lg p-3 mb-5 bg-light rounded ">
             <h1 className="">Registration</h1>
             {Object.keys(formErrors).length === 0 && isSubmitting && (
@@ -159,6 +162,7 @@ const Registration = () => {
                 <Link to="/login">Sign in</Link>
             </form>
         </div>
+        </>
     );
 };
 

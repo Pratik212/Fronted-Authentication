@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import './user.css'
 import {getAllUser} from "./store/userSlice";
 import {useDispatch, useSelector} from "react-redux";
+import Navigation from "../navigation/Navigation";
 
 function UserTable(){
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function UserTable(){
 
     return(
         <>
+            <Navigation/>
             <div className="container-fluid" style={{justifyContent:'center',display:'flex'}}>
                 <h1>
                     User Data
@@ -23,6 +25,7 @@ function UserTable(){
 
             <table style={{width:'100%'}}>
                 <tr>
+                    <th>Id</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Email</th>
@@ -30,6 +33,7 @@ function UserTable(){
                 </tr>
                 {user.map(item =>
                 <tr>
+                    <td>{item.id}</td>
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
                     <td>{item.email}</td>

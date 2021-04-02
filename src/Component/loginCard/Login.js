@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import history from '../../@history/@history'
 import {submitLogin} from "../../auth/store/loginSlice";
 import {useDispatch} from "react-redux";
+import Navigation from "../navigation/Navigation";
 
 const Form = () => {
     const intialValues = { email: "", password: "" };
@@ -63,6 +64,9 @@ const Form = () => {
     }, [formErrors]);
 
     return (
+        <>
+            <Navigation/>
+
         <div className="container shadow-lg p-3 mb-5 bg-white rounded ">
             <h1 className="">Sign in to continue</h1>
             {Object.keys(formErrors).length === 0 && isSubmitting && (
@@ -103,6 +107,7 @@ const Form = () => {
                 <Link to="/register" >Sign up</Link>
             </form>
         </div>
+        </>
     );
 };
 
