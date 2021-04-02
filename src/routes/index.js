@@ -5,6 +5,7 @@ import Route from './Route';
 import Login from '../Component/loginCard/Login';
 import Registration from '../Component/registrationCard/Registration';
 import Dashboard from "../Component/home/Dashboard";
+import UserTable from "../Component/userTable/userTable";
 
 
 export default function Routes() {
@@ -21,6 +22,7 @@ export default function Routes() {
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/register" exact component={Registration} />
                 <Route path="/login" exact component={Login} />
+                <Route path="/user" exact component={UserTable} />
 
                 <Route component={Dashboard} />
             </Switch>
@@ -33,6 +35,7 @@ export default function Routes() {
             <Route path="/register" exact component={Registration} />
             <Route path="/login" exact component={Login} />
             <Route path="/" exact component={Dashboard} />
+            <Route path="/user" exact component={UserTable} />
 
             <Route component={Dashboard} />
         </Switch>
