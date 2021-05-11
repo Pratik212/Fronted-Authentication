@@ -81,9 +81,9 @@ class JwtService extends FuseUtils.EventEmitter {
                     password
                 })
                 .then(response => {
-                    if (response.data.data) {
-                        this.setSession(response.data.data.jwToken);
-                        resolve(response.data.data);
+                    if (response.data) {
+                        this.setSession(response.data.token);
+                        resolve(response.data);
                     } else {
                         reject(response.data.error);
                     }
@@ -111,13 +111,13 @@ class JwtService extends FuseUtils.EventEmitter {
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
             axios
-                .post('/Auth/ValidateToken', {
+                .post('/Admin/ValidateToken', {
                     token: this.getAccessToken()
                 })
                 .then(response => {
-                    if (response.data.data.jwToken) {
-                        this.setSession(response.data.data.jwToken);
-                        resolve(AddRoleToUserObj(response.data.data));
+                    if (response.data.token) {
+                        this.setSession(response.data.token);
+                        resolve(AddRoleToUserObj(response.data));
                     } else {
                         this.logout();
                         Promise.reject(new Error('Failed to login with token.'));
